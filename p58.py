@@ -4,10 +4,9 @@ def prime(n): return n not in poulet and pow(2, n-1, n) == 1
 
 poulet = {}
 
-with open('p58_poulet.txt', 'r') as f:
+with open('poulet.txt', 'r') as f:
     for s in f:
-        (n, pseudo) = s.split()
-        poulet[int(pseudo)] = True
+        poulet[int(s)] = True
 
 (d, primes) = (3, 3)
 
