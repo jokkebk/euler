@@ -1,5 +1,5 @@
 from math import factorial
 
-fact = [factorial(n) for n in range(10)]
+def fsum(n): return sum(factorial(int(d)) for d in str(n))
 
-print(fact)
+print(sum(n for n in range(3, 45000) if n == fsum(n)))

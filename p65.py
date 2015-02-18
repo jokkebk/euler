@@ -1,13 +1,23 @@
-def calc(s):
-    (denum, num) = (1, 0)
-    for el in s[-1:0:-1]:
-        (num, denum) = (denum, num)
-        denum += el * num
-    num += s[0] * denum
-    return (num, denum)
+import math
 
-e = [2]
+def brahmagupta(N, a, b, k):
+    (best, M) = (False, 0)
 
-for i in range(2,102,2): e.extend([1,i,1])
+    for m in range(1,2*abs(k)+1):
+        if (a + b*m) % k: continue
+        val = abs(m*m - N)
+        if not best or val < best:
+            (best, M) = (val, m)
+        else:
+            break
 
-print(sum(int(c) for c in str(calc(e[:100])[0])))
+    return ((a*M+N*b)//abs(k), (a+b*M)//abs(k), (M*M-N)//k)
+
+def chakravala(N):
+    (a, b, k) = (1, 1, 1-N)
+    while k != 1: (a, b, k) = brahmagupta(N, a, b, k)
+    return a
+
+squares = {n*n for n in range(2,40)}
+
+print(max((chakravala(N), N) for N in range(2,1001) if N not in squares))
