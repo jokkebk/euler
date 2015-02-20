@@ -4,19 +4,19 @@ with open('poulet.txt', 'r') as f:
     for s in f:
         if int(s) > 1e5: break
         poulet[int(s)] = True
-primes = [p for p in range(2,8500) if prime(p)]
+primes = [p for p in range(2,8500) if prime(p) or p == 2]
 
 nums = set()
+M = 50000000
 
 for a in primes:
-    if a*a > 5e7: break
+    if a*a >= M: break
     for b in primes:
         ab = a*a + b**3
-        if ab > 5e7: break
-        print(a,b)
+        if ab >= M: break
         for c in primes:
             abc = ab + c**4
-            if abc > 5e7: break
+            if abc >= M: break
             nums.add(abc)
 
 print(len(nums))
