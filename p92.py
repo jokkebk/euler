@@ -6,5 +6,4 @@ def is89(n):
     if n == 1: return False
     return is89(sum(int(d)**2 for d in str(n)))
 
-#while True: print(is89(int(input('> '))))
 print(sum(1 for n in range(1,10**7+1) if is89(n)))
