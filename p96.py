@@ -6,7 +6,6 @@ with open('p96.txt') as fin: lines = [line.strip() for line in fin]
 def make_const(i,j,n): # create constraint row for number n at i,j in sudoku
     return {(0,i,j), (1,i,n), (2,j,n), (3,i//3,j//3,n)}
 
-# Return a subset of constraints when const is applied
 def apply_const(const, consts):
     return [c for c in consts if c.isdisjoint(const)]
 
@@ -28,29 +27,18 @@ def print_sudoku(sudoku):
             print('.' if sudoku[j][i] == '0' else sudoku[j][i], end='')
         print()
 
-consts = [make_const(i,j,n) for i,j,n in pr(range(9), range(9), range(1,10))]
-
-sudoku = lines[1:10]
-solution = []
-cs = consts.copy()
-
-for j,i in pr(range(9), range(9)):
-    n = int(sudoku[j][i])
-    if not n: continue
-    c = make_const(i,j,n)
-    cs = apply_const(c, cs)
-    solution.append(c)
+total = 0
 
 def solve(sol, cs, indent = ""):
-    #print("%ssolve(<%d>, <%d>)" % (indent, len(sol), len(cs)))
+    global total
     if len(cs) == 0:
         if len(sol) == 81:
             solution = [['x' for i in range(9)] for j in range(9)]
-            print("Solution found!")
             for c in sol:
                 (i,j,n) = desc_const(c)
                 solution[j][i] = str(n)
-            print_sudoku(["".join(row) for row in solution])
+            total += int(("".join(solution[0]))[0:3])
+            #print_sudoku(["".join(row) for row in solution])
         return
 
     cnt = Counter()
@@ -62,5 +50,22 @@ def solve(sol, cs, indent = ""):
     for c in find_const(pivot, cs):
         solve(sol+[c], apply_const(c, cs), indent+'  ')
 
-print("Solving with %d given numbers, %d constraints..." % (len(solution), len(cs)))
-solve(solution, cs)
+consts = [make_const(i,j,n) for i,j,n in pr(range(9), range(9), range(1,10))]
+
+for prob in range(len(lines)//10):
+    sudoku = lines[prob*10+1:prob*10+10]
+    print("Problem %d:" % prob)
+    #print_sudoku(sudoku)
+    solution = []
+    cs = consts.copy()
+
+    for j,i in pr(range(9), range(9)):
+        n = int(sudoku[j][i])
+        if not n: continue
+        c = make_const(i,j,n)
+        cs = apply_const(c, cs)
+        solution.append(c)
+
+    solve(solution, cs)
+
+print(total)
