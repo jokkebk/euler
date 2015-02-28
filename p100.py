@@ -1,11 +1,7 @@
-x = [7]
-y = [5]
+(xk, yk) = (x1, y1) = (1, 1)
 
-for i in range(13):
-    print(x[-1], y[-1], x[-1]**2-2*y[-1]**2)
-    if x[-1]%2 and y[-1]%2:
-        (d,b) = ((x[-1]+1)//2, (y[-1]+1)//2)
-        print(d, b, 1.0 * b*(b-1) / (d*(d-1)))
-    x.append(x[0]*x[-1] + 2*y[0]*y[-1])
-    y.append(x[0]*y[-1] + y[0]*x[-2])
-
+while True:
+    (xk, yk) = (x1*xk+2*y1*yk, x1*yk+y1*xk)
+    if xk>1e12 and xk&1 and yk&1:
+        print((yk+1)//2)
+        break
