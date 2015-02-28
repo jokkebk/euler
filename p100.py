@@ -1,8 +1,11 @@
-N = 20
-semis = {n*(n-1): n for n in range(N)}
+x = [7]
+y = [5]
 
-for d in range(N+1, 2*N+1):
-    semi = d*(d-1)
-    if semi//2 in semis:
-        print(semi, semis[semi//2])
-        break
+for i in range(13):
+    print(x[-1], y[-1], x[-1]**2-2*y[-1]**2)
+    if x[-1]%2 and y[-1]%2:
+        (d,b) = ((x[-1]+1)//2, (y[-1]+1)//2)
+        print(d, b, 1.0 * b*(b-1) / (d*(d-1)))
+    x.append(x[0]*x[-1] + 2*y[0]*y[-1])
+    y.append(x[0]*y[-1] + y[0]*x[-2])
+
