@@ -1,7 +1,3 @@
-(xk, yk) = (x1, y1) = (1, 1)
-
-while True:
-    (xk, yk) = (x1*xk+2*y1*yk, x1*yk+y1*xk)
-    if xk>1e12 and xk&1 and yk&1:
-        print((yk+1)//2)
-        break
+(x,y) = (1,1)
+while x<1e12: (x,y) = (3*x+4*y, 2*x+3*y)
+print((y+1)//2)
