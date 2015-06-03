@@ -1,9 +1,9 @@
-def pandigi(s): return "".join(sorted(s)) == "123456789"
+pandigi = lambda s: "".join(sorted(s)) == "123456789"
 
-(fn, fn1, n) = (1, 1, 2)
+(bn, bn1, tn, tn1, n) = (1, 1, 1, 1, 2) # bottom and top parts
 
 while True:
-    (fn, fn1, n) = (fn+fn1, fn, n+1)
-    if pandigi(str(fn)[-9:]) and pandigi(str(fn)[:9]):
+    (bn, bn1, tn, tn1, n) = ((bn+bn1)%1000000000, bn, tn+tn1, tn, n+1)
+    if pandigi(str(bn)) and pandigi(str(tn)[:9]):
         print(n)
         break
