@@ -13,7 +13,6 @@ def ways(n):
 p = list(reversed([2, 3, 5, 7, 11, 13]))
 for t in product(range(1,3), repeat=6):
     n = reduce(mul, [p[i]**v for i,v in enumerate(t)])
-    w = ways(n)
-    if w > 1000:
-        print(n, w)
+    if ways(n) > 1000:
+        print(n)
         break
