@@ -1,6 +1,4 @@
 from math import factorial
-from itertools import combinations
-import sys
 
 def C(n,r): return factorial(n) // factorial(r) // factorial(n-r)
 
