@@ -2,6 +2,13 @@ from collections import Counter, defaultdict
 from operator import mul
 from functools import reduce
 
+def prime(n): return n==2 or (n not in prime.poulet and pow(2, n-1, n) == 1)
+
+def initpoulet():
+    prime.poulet = {}
+    with open('poulet.txt', 'r') as f:
+        for s in f: prime.poulet[int(s)] = True
+
 def getprimesieve(N):
     primes = [True] * (N+1)
     for i in range(2,int(N**.5)):
