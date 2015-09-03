@@ -1,18 +1,12 @@
 from collections import defaultdict
+from primes import gcd
 
 N = 120000
-rad, div = [1] * (N+1), [1] * (N+1)
+rad = [1] * (N+1)
 
 for i in range(2,len(rad)):
     if rad[i] > 1: continue
-    for j in range(i,len(rad),i):
-        rad[j] *= i
-        div[j] = i
-
-def facts(n):
-    d = div[n]
-    f = set([d])
-    return f if d==n else f.union(facts(n//d))
+    for j in range(i,len(rad),i): rad[j] *= i
 
 R = defaultdict(list)
 for i,r in enumerate(rad[1:]): R[r].append(i+1)
@@ -26,6 +20,5 @@ for rb in rads:
             for a in R[ra]:
                 if a >= b or a + b >= N: break
                 if ra*rb*rad[a+b] >= a+b: continue
-                if not facts(a).intersection(facts(b)): S += a+b
-
+                if gcd(a,b) == 1: S += a+b
 print(S)
