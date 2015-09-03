@@ -20,13 +20,12 @@ rads = sorted(R)
 
 S = 0
 for rb in rads:
-    if rb*2 > N: break
     for b in R[rb]:
         for ra in rads:
             if ra*rb*2 > N: break
             for a in R[ra]:
                 if a >= b or a + b >= N: break
-                if rad[a]*rad[b]*rad[a+b] >= a+b: continue
+                if ra*rb*rad[a+b] >= a+b: continue
                 if not facts(a).intersection(facts(b)): S += a+b
 
 print(S)

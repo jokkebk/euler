@@ -13,7 +13,7 @@ def getprimesieve(N):
     primes = [True] * (N+1)
     for i in range(2,int(N**.5)):
         if not primes[i]: continue
-        for j in range(i*2, N+1, i): primes[j] = True
+        for j in range(i*2, N+1, i): primes[j] = False
     return primes
 
 def getdivs(N):
