@@ -2,6 +2,10 @@ from collections import Counter, defaultdict
 from operator import mul
 from functools import reduce
 
+def gcd(a,b):
+    while a: a, b = b % a, a
+    return b
+
 def prime(n): return n==2 or (n not in prime.poulet and pow(2, n-1, n) == 1)
 
 def initpoulet():
@@ -10,10 +14,10 @@ def initpoulet():
         for s in f: prime.poulet[int(s)] = True
 
 def getprimesieve(N):
-    primes = [True] * (N+1)
+    primes = [False,False] + [True]*(N-1)
     for i in range(2,int(N**.5)):
         if not primes[i]: continue
-        for j in range(i*2, N+1, i): primes[j] = True
+        for j in range(i*2, N+1, i): primes[j] = False
     return primes
 
 def getdivs(N):
