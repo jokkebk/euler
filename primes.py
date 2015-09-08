@@ -20,6 +20,8 @@ def getprimesieve(N):
         for j in range(i*2, N+1, i): primes[j] = False
     return primes
 
+getprimes = lambda N: {i for i,v in enumerate(getprimesieve(N)) if v}
+
 def getdivs(N):
     divs = [0] * (N+1)
     for i in range(2,int(N**.5)):
