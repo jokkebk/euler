@@ -1,5 +1,5 @@
 from primes import getprimes
-from chinese import chinese_remainder
+from util import chinese_remainder
 
 def S(p,q):
     d = next(10**i for i in range(1,9) if 10**i > p)

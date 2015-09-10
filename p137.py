@@ -5,6 +5,7 @@
 # Generating them with Euclid's formula gives (2mn, m^2-n^2, m^2+n^2)
 # so we are looking for composite numbers where m^2-n^2 = mn+1 so
 # m = (n+sqrt(5n^2+4))/2 which is integer when 5n^2+4 is square
+# By the way, all n satisfying this are Fibonacci numbers 
 
 sq = {}
 for i in range(1,1<<22):

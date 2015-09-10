@@ -2,19 +2,6 @@ from collections import Counter, defaultdict
 from operator import mul
 from functools import reduce
 
-def gcd(a,b):
-    while a: a, b = b % a, a
-    return b
-
-# Generate pythagorean triples where c < N
-def pythag(N):
-    for n in range(1,N):
-        if 2*n*n > N: break
-        for m in range(n+1,int((N-n*n)**.5)+1, 2):
-            if gcd(m,n)!=1: continue
-            a, b, c = m*m-n*n, 2*m*n, m*m+n*n
-            yield (a,b,c) if a<b else (b,a,c)
-
 def prime(n): return n==2 or (n not in prime.poulet and pow(2, n-1, n) == 1)
 
 def initpoulet():
