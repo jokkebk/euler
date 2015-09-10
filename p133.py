@@ -1,5 +1,5 @@
 from itertools import islice, count
-from primes import gcd, getprimesieve
+from primes import getprimesieve
 
 def A(n):
     m = 1

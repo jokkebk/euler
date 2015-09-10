@@ -1,5 +1,5 @@
 from collections import defaultdict
-from primes import gcd
+from util import gcd
 
 N = 120000
 rad = [1] * (N+1)
