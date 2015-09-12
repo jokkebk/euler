@@ -1,3 +1,14 @@
+# Babylonian square check
+def square(i):
+    if i == 1: return True
+    x = i // 2
+    seen = set([x])
+    while x * x != i:
+        x = (x + (i // x)) // 2
+        if x in seen: return False
+        seen.add(x)
+    return True
+
 # Newton method integer square root
 def isqrt(n):
     x = n
@@ -20,13 +31,16 @@ def gcd(a,b):
     return b
 
 # Generate pythagorean triples where c < N
-def pythag(N):
+def pythag(N, primitive=True):
     for n in range(1,N):
         if 2*n*n > N: break
         for m in range(n+1,int((N-n*n)**.5)+1, 2):
             if gcd(m,n)!=1: continue
             a, b, c = m*m-n*n, 2*m*n, m*m+n*n
-            yield (a,b,c) if a<b else (b,a,c)
+            if a>b: a,b = b,a
+            if primitive: yield (a,b,c)
+            else:
+                for k in range(1,N//c): yield (k*a,k*b,k*c)
 
 # Adapted from http://rosettacode.org/wiki/Chinese_remainder_theorem#Python
 def chinese_remainder(n, a):
