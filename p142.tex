@@ -1,0 +1,63 @@
+\documentclass[12pt,a4paper,leqno]{amsart}
+\usepackage[latin1]{inputenc}  % Unixin merkistö
+\usepackage[T1]{fontenc}       % Not needed for English, though
+\usepackage[english]{babel}    % Changed from finnish
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{color}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\sijoitus}[2]%
+{\operatornamewithlimits{\Bigl/}_{\!\!\!#1}^{\,#2}}
+\pagestyle{plain}
+
+\title{Project Euler Problem 142}
+\author{Joonas Pihlajamaa}
+
+\begin{document}
+
+\maketitle
+
+We want to find three positive integers $x > y > z > 0$ with minimal sum, for which the positive differences and sums are all perfect squares:
+
+\begin{align}
+    x + z &= k^2\label{k2} \\
+    x - z &= l^2\label{l2} \\
+    y + z &= m^2\label{m2} \\
+    y - z &= n^2\label{n2} \\
+    x + y &= q^2\label{q2} \\
+    x - y &= r^2\label{r2}
+\end{align}
+
+Note that $m > n$ because $z > 0$. From these equations we get:
+
+\begin{align}
+    x + z = y + z + x - y &\Rightarrow k^2 = m^2 + r^2 \\
+    x - z = y - z + x - y &\Rightarrow l^2 = n^2 + r^2
+\end{align}
+
+Geometric interpretation for this is that $(m, r, k)$ and $(n, r, l)$ are pythagorean triplets. And from \eqref{q2} we get an additional condition:
+
+\begin{equation}\label{square}
+	x + y = x - z + y + z \Rightarrow n^2 + r^2 + m^2 = q^2
+\end{equation}
+
+From the equations \eqref{k2}-\eqref{r2} we can solve $x$, $y$, and $z$:
+
+\begin{align}
+2x &= m^2 + n^2 + 2r^2 \\
+2y &= m^2 + n^2 \\
+2z &= m^2 - n^2
+\end{align}
+
+So in order for $x$, $y$, $z$ be integer, both $m$ and $n$ must have same parity. So we can search for pythagorean triples sharing a leg and see if they can be combined to satisfy \eqref{square} and the parity requirement.
+
+\lstinputlisting[language=Python, firstline=1,
+	frame=topline, float, caption=Problem 142 Solution]{p142.py}
+
+\end{document}
