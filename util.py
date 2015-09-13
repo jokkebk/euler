@@ -1,3 +1,24 @@
+from collections import deque
+
+# Generate Farey sequence up to n (coprime pairs corresponding fractions n/m)
+def farey(n, asc=True):
+    a, b, c, d = 0, 1, 1, n
+    while c <= n:
+        k = (n + b)//d
+        a, b, c, d = c, d, k*c - a, k*d - b
+        yield a,b
+
+# Generate coprime pairs below N
+def coprime(N):
+    b = deque([(2,1), (3,1)], 10**7)
+    while b:
+        m, n = b.pop()
+        if m<N:
+            yield m,n
+            b.appendleft((2*m-n, m))
+            b.appendleft((2*m+n, m))
+            b.appendleft((m+2*n, n))
+
 # Babylonian square check
 def square(i):
     if i == 1: return True
