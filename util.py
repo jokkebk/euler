@@ -1,5 +1,17 @@
 from collections import deque
 
+# Extended Euclidean algorithm, thanks to jnalanko :)
+def EEA(a,b):
+    r0, r1 = a, b
+    s0, s1 = 1, 0
+    t0, t1 = 0, 1
+    while r0 % r1:
+        q = r0//r1
+        r1, r0 = r0 - q*r1, r1
+        s1, s0 = s0 - q*s1, s1
+        t1, t0 = t0 - q*t1, t1
+    return r1, s1, t1
+
 # Generate Farey sequence up to n (coprime pairs corresponding fractions n/m)
 def farey(n, asc=True):
     a, b, c, d = 0, 1, 1, n
