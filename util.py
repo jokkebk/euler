@@ -1,5 +1,16 @@
 from collections import deque
 
+# Linear Diophantine equation Dx+Ey+F=0 solver
+def dsolve(D,E,F):
+    g,u,v = EEA(D,E)
+    if F%g: return None
+    d,e,f = D//g, E//g, F//g
+    # x=a+b*t, y=c+d*t
+    if g<0:
+        return f*u, e, f*v, -d
+    else:
+        return -f*u, e, -f*v, -d
+
 # Extended Euclidean algorithm, thanks to jnalanko :)
 def EEA(a,b):
     r0, r1 = a, b
