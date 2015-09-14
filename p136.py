@@ -16,5 +16,8 @@ for a in count(1):
         last = a
     if last+2 < a: break
 
-print(I)
+c = Counter()
+for i in W: c[W[i]] += 1
+for k in sorted(c):
+    print(k, c[k])
 print(sum(1 for i in W if W[i]==1))
