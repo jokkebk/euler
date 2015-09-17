@@ -11,6 +11,7 @@ R = 100
 I = 0
 ok = {}
 
+# http://mathworld.wolfram.com/DiophantineEquation2ndPowers.html
 for u in range(1,500):
     for v in range(1,u//2):
         if gcd(u,v) > 1: continue
