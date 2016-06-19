@@ -106,4 +106,4 @@ sum = 0
 
 for n in nums: sum += n
 
-print(sum)
+print(str(sum)[:10])

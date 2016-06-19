@@ -44,5 +44,7 @@ p1wins = 0
 with open('p54_poker.txt', 'r') as f:
     for s in f:
         hand = [("23456789TJQKA".index(c[0]) + 2, c[1]) for c in s.split()]
+        print(hand)
         if analyze(hand[:5]) > analyze(hand[5:]): p1wins += 1
+        break
 print(p1wins)

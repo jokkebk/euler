@@ -28,4 +28,5 @@ for row in range(1, len(tri)):
         tri[row][col] += max(left, right)
         best = max(best, tri[row][col])
 
+print("\n".join(str(i) for i in tri))
 print(best)
